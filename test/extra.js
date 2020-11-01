@@ -241,4 +241,35 @@ this.extra_suite =
     });
     test.done();
   },
+
+  'Dijkstra\'s Shortest Path List': function (test)
+  {
+    var g = new Graph();
+    g.set('a','b', 3);
+    g.set('a','c', 1);
+    g.set('b','c', 7);
+    g.set('b','d', 5);
+    g.set('c','d', 2);
+    g.set('e','b', 1);
+    g.set('e','d', 7);
+    
+    const shortest_paths = g.dijkstra('a')
+    
+    test.ok(shortest_paths.a.weight === 0, "Calculates shorted weight to a correctly.");
+    test.ok(shortest_paths.a.path.length === 0, "Calculates shorted path to a correctly.");
+
+    test.ok(shortest_paths.b.weight === 3, "Calculates shorted weight to b correctly.");
+    test.ok(shortest_paths.b.path.length === 1, "Calculates shorted path to b correctly.");
+
+    test.ok(shortest_paths.c.weight === 1, "Calculates shorted weight to c correctly.");
+    test.ok(shortest_paths.c.path.length === 1, "Calculates shorted path to c correctly.");
+
+    test.ok(shortest_paths.d.weight === 3, "Calculates shorted weight to d correctly.");
+    test.ok(shortest_paths.d.path.length === 2, "Calculates shorted path to d correctly.");
+
+    test.ok(shortest_paths.e.weight === 4, "Calculates shorted weight to e correctly.");
+    test.ok(shortest_paths.e.path.length === 2, "Calculates shorted path to e correctly.");
+    
+    test.done();
+  },
 };
